@@ -1,0 +1,16 @@
+bank,card,annual_fee,local_cash_charge,overseas_cash_charge
+Citi,A,400,0.19,0.192
+Citi,B,850,0.19,0.22
+Citi,Kharismo,150,0.15,0.24
+Bank 1,A,50,0.1,0.216
+Bank 1,B,100,0.09,0.144
+Bank 1,C,500,0.05,0.228
+Bank 2,A,100,0.18,0.228
+Bank 2,B,1000,0.09,0.12
+Bank 2,C,250,0.14,0.144
+Bank 3,A,550,0.12,0.12
+Bank 3,B,300,0.08,0.12
+Bank 3,C,450,0.2,0.212
+Bank 4,A,750,0.06,0.084
+Bank 4,B,150,0.17,0.17
+Bank 4,C,200,0.11,0.094
