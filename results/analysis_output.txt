@@ -1,0 +1,129 @@
+##### 01_portfolio_summary.py
+
+========================================================================
+1) PORTFOLIO KPIs
+========================================================================
+  Active accounts:            1,000
+  Total 12-month spend:       $42,130,224  ($42.13M)
+  Spend per cardholder:       $42,130
+    Local Transactions     $ 17.83M  (42.3%)
+    Local Cash             $ 14.16M  (33.6%)
+    Overseas Transactions  $  6.64M  (15.8%)
+    Overseas Cash          $  3.50M  (8.3%)
+  Mean risk of default:       0.302
+  Total default exposure:     $2,450,010
+
+========================================================================
+2) CARDHOLDER DEMOGRAPHICS
+========================================================================
+  Age bands:
+    18-25        6.9%
+    26-35       12.2%
+    36-45       10.8%
+    46-65       31.4%
+    Over 65     38.7%
+  Aged over 45: 70.1%
+  Income bands:
+    $50k-75k      245 accounts (24.5%)
+    $75k-100k     251 accounts (25.1%)
+    $100k-150k    504 accounts (50.4%)
+  Employment status:
+    Employed full-time      21.4%
+    Employed part-time      18.7%
+    Retired                 14.2%
+    Full-time education     12.0%
+    Self-employed           11.4%
+    Not working             11.2%
+    Homemaker               11.1%
+
+##### 02_spend_seasonality.py
+
+========================================================================
+SPEND SEASONALITY (12 monthly cycles)
+========================================================================
+  January    $ 2.81M  ############################
+  February   $ 2.88M  ############################
+  March      $ 3.24M  ################################
+  April      $ 3.22M  ################################
+  May        $ 3.76M  #####################################
+  June       $ 3.92M  #######################################
+  July       $ 4.40M  ############################################
+  August     $ 3.21M  ################################
+  September  $ 3.27M  ################################
+  October    $ 3.54M  ###################################
+  November   $ 3.62M  ####################################
+  December   $ 4.25M  ##########################################
+  Peaks: July ($4.40M), December ($4.25M)
+  Lowest: January ($2.81M)
+  Overseas transactions: $0.25M (January) to $0.95M (December), 3.7x swing -> travel seasonality
+  saved figures/monthly_spend_breakdown.png
+
+##### 03_default_risk.py
+
+========================================================================
+1) PEARSON CORRELATION WITH RISK OF DEFAULT
+========================================================================
+  Income   r = -0.33   r² = 0.111   p = 1.9e-27
+  Age      r = -0.07   r² = 0.005   p = 0.019
+  -> Income is a meaningful inverse driver; age explains <1% of variance.
+  Mean risk by income band:
+    $50k-75k     0.351
+    $75k-100k    0.299
+    $100k-150k   0.280
+
+========================================================================
+2) ONE-WAY ANOVA: DOES RISK DIFFER ACROSS GROUPS?
+========================================================================
+  marital_status     F =  263.44   p = 2.7e-179   eta² = 0.570   -> significant
+  employment_status  F =    1.13   p = 0.34   eta² = 0.007   -> not significant
+  gender             F =    3.04   p = 0.048   eta² = 0.006   -> significant
+  Mean risk by marital status:
+    Single                     0.429
+    Divorced                   0.328
+    Separated                  0.322
+    Widowed                    0.279
+    Married/Civil partnership  0.245
+    Prefer not to disclose     0.220
+  Tukey HSD on marital_status (pairs that differ at p < 0.05):
+    Divorced                   vs Married/Civil partnership  diff +0.083
+    Divorced                   vs Prefer not to disclose     diff +0.107
+    Divorced                   vs Single                     diff -0.101
+    Divorced                   vs Widowed                    diff +0.049
+    Married/Civil partnership  vs Prefer not to disclose     diff +0.024
+    Married/Civil partnership  vs Separated                  diff -0.078
+    Married/Civil partnership  vs Single                     diff -0.184
+    Married/Civil partnership  vs Widowed                    diff -0.034
+    Prefer not to disclose     vs Separated                  diff -0.102
+    Prefer not to disclose     vs Single                     diff -0.209
+    Prefer not to disclose     vs Widowed                    diff -0.058
+    Separated                  vs Single                     diff -0.107
+    Separated                  vs Widowed                    diff +0.044
+    Single                     vs Widowed                    diff +0.150
+  saved figures/default_risk_by_marital_status.png
+  saved figures/income_vs_default_risk.png
+
+##### 04_competitor_pricing.py
+
+========================================================================
+1) PRICING BY BANK (rival banks averaged over their 3 cards)
+========================================================================
+        annual_fee  local_cash_charge  overseas_cash_charge
+bank                                                       
+Citi       466.667              0.177                 0.217
+Bank 1     216.667              0.080                 0.196
+Bank 2     450.000              0.137                 0.164
+Bank 3     433.333              0.133                 0.151
+Bank 4     366.667              0.113                 0.116
+
+========================================================================
+2) KHARISMO'S OVERSEAS CASH CHARGE
+========================================================================
+  Kharismo charges 24.0%: #1 most expensive of 15 cards
+  Rival average 15.7%, rival median 14.4%, market average 16.9%
+  At the recommended 18%: #7 of 15 (mid-market), still below Citi A (19.2%) and Citi B so the premium cards keep their positioning
+
+========================================================================
+3) CHARTS
+========================================================================
+  saved figures/competitor_local_cash_pricing.png
+  saved figures/competitor_overseas_cash_pricing.png

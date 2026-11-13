@@ -1,0 +1,9 @@
+# Source workbooks from the simulation are not redistributed
+*.xlsx
+*.pptx
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
